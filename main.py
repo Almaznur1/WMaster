@@ -28,7 +28,7 @@ template = env.get_template('template.html')
 
 years_since_foundation = date.today().year - datetime(year=1920, month=1, day=1).year
 
-wines = pandas.read_excel('wine2.xlsx',
+wines = pandas.read_excel('wine3.xlsx',
                           na_values=['N/A', 'NA'], keep_default_na=False)
 wines = wines.to_dict(orient='records')
 
