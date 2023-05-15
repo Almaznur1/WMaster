@@ -33,8 +33,8 @@ def main():
     wines = wines.to_dict(orient='records')
 
     drinks = collections.defaultdict(list)
-    for drink in wines:
-        drinks[drink['Категория']] = []
+    for wine in wines:
+        drinks[wine['Категория']] = []
     for drink in drinks:
         drinks[drink] = [wine for wine in wines if wine['Категория'] == drink]
 
