@@ -4,6 +4,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from datetime import datetime, date
 import pandas
 import collections
+import argparse
 
 
 def define_year_word(years_since_foundation):
@@ -19,6 +20,11 @@ def define_year_word(years_since_foundation):
 
 
 def main():
+    parser = argparse.ArgumentParser(description='Программа для запуска сайта винного магазина')
+    parser.add_argument('--drinks_catalog', default='wine3.xlsx',
+                        help='введите путь до файла с каталогом вин с расширением xlsx')
+    drinks_catalog = parser.parse_args().drinks_catalog
+
     env = Environment(
         loader=FileSystemLoader('.'),
         autoescape=select_autoescape(['html', 'xml'])
@@ -28,7 +34,7 @@ def main():
 
     years_since_foundation = date.today().year - datetime(year=1920, month=1, day=1).year
 
-    wines = pandas.read_excel('wine3.xlsx',
+    wines = pandas.read_excel(drinks_catalog,
                               na_values=['N/A', 'NA'], keep_default_na=False)
     wines = wines.to_dict(orient='records')
 
