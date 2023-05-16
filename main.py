@@ -40,9 +40,7 @@ def main():
 
     drinks = collections.defaultdict(list)
     for wine in wines:
-        drinks[wine['Категория']] = []
-    for drink in drinks:
-        drinks[drink] = [wine for wine in wines if wine['Категория'] == drink]
+        drinks[wine['Категория']].append(wine)
 
     rendered_page = template.render(years_since_foundation=years_since_foundation,
                                     year_word=define_year_word(years_since_foundation),
